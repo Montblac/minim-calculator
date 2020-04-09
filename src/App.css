@@ -1,0 +1,59 @@
+@font-face {
+  font-family: Alcubierre;
+  src: local("Alcubierre"), url(./fonts/Alcubierre.otf) format("opentype");
+}
+
+* {
+  font-family: "Alcubierre";
+}
+
+.app {
+  background: #4c566a;
+  height: 100vh;
+  width: 100vw;
+}
+
+header {
+  position: relative;
+  top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 300;
+  font-size: 24px;
+  color: #eceff4;
+}
+
+.calculator {
+  background-color: #eceff4;
+  background: linear-gradient(#b1b9bd 35%, #eceff4 0);
+  display: block;
+  position: relative;
+  top: 8em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3em 3em 3em 3em;
+  height: 55vh;
+  width: 60vw;
+}
+
+@media (min-width: 2560px) {
+  /* TODO: Adjust for 1440p monitor */
+  .calculator {
+    height: 70vh;
+    width: 20vw;
+  }
+}
+@media (min-width: 1920px) {
+  /* TODO: Adjust for 1080p monitor */
+  .calculator {
+    height: 60vh;
+    width: 20vw;
+  }
+}
+
+.screen {
+  background: #b1b9bd;
+  position: relative;
+}
