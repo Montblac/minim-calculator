@@ -9,17 +9,23 @@ function App() {
   //const num_buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
   //const op_buttons = ["/", "%", "+", "x", "-", "=", "AC", "+/-"];
 
+  // TODO: Fix updateCurrent to only take value
   const updateCurrent = value => {
     setCurrent(current + value);
   };
   const updatePrevious = value => {
     setPrevious(value);
   };
+
+  // TODO: Fix updateOperator to call update functions
   const updateOperator = operator => {
     setOperator(operator);
     setPrevious(current);
     setCurrent("");
   };
+
+  // TODO: Split clearDisplay to individual clear functions
+  // TODO: Make separate Display function to show values without changing state
   const clearDisplay = () => {
     setCurrent("");
     setPrevious("");
