@@ -31,11 +31,52 @@ header {
   display: block;
   position: relative;
   top: 8em;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   border-radius: 3em 3em 3em 3em;
   height: 55vh;
   width: 60vw;
+  padding: 0.5em;
+}
+
+.calculator .screen {
+  /*background: pink;*/
+  width: 100%;
+  height: 32%;
+  position: relative;
+  margin: auto;
+  text-align: right;
+  border-radius: 3em 3em 0em 0em;
+}
+
+.screen .prev,
+.screen .curr {
+  color: #eceff4;
+  display: block;
+  position: absolute;
+  right: 0;
+}
+
+.screen .prev {
+  bottom: 2.5em;
+}
+
+.screen .curr {
+  font-size: 2em;
+  bottom: 0em;
+}
+
+.calculator .pad {
+  /*background: skyblue;*/
+  width: auto;
+  height: 64%;
+  margin: 1em auto;
+  border-radius: 0em 0em 3em 3em;
+
+  text-align: center;
+}
+
+button {
+  font-size: 150%;
 }
 
 @media (min-width: 2560px) {
@@ -53,7 +94,22 @@ header {
   }
 }
 
+/*
+.pad {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 5px;
+
+  width: 75%;
+  border-color: blue;
+  text-align: center;
+  background-color: red;
+}
+*/
+/*
 .screen {
   background: #b1b9bd;
   position: relative;
 }
+*/
