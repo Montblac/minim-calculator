@@ -18,27 +18,28 @@ function App() {
   const [previous, setPrevious] = useState("");
   const [operator, setOperator] = useState("");
 
+  // Update Functions
   const updateCurrent = value => {
     setCurrent(value);
   };
   const updatePrevious = value => {
     setPrevious(value);
   };
-
-  // TODO: Fix updateOperator to call update functions
-  const updateOperator = operator => {
-    setOperator(operator);
-    setPrevious(current);
-    setCurrent("");
+  const updateOperator = op => {
+    setOperator(op);
   };
 
-  // TODO: Split clearDisplay to individual clear functions
-  // TODO: Make separate Display function to show values without changing state
-  const clearDisplay = () => {
-    setCurrent("");
-    setPrevious("");
-    setOperator("");
+  // Clear Functions
+  const clearCurrent = () => {
+    updateCurrent("");
   };
+  const clearPrevious = () => {
+    updatePrevious("");
+  };
+  const clearOperator = () => {
+    updateOperator("");
+  };
+
   const toggleSign = () => {
     if (current) {
       var num = parseFloat(current);
@@ -65,8 +66,20 @@ function App() {
     }
     return result;
   };
+  const onOperator = op => {
+    updateOperator(op);
+    updatePrevious(current);
+    updateCurrent("");
+  };
   const onNumber = num => {
     updateCurrent(current + num);
+  };
+
+  // TODO: Make separate Display function to show values without changing state
+  const onClear = () => {
+    clearCurrent();
+    clearPrevious();
+    clearOperator();
   };
   const onEqual = () => {
     if (current && previous && operator) {
@@ -98,7 +111,7 @@ function App() {
         </div>
         <div className="pad">
           <div>
-            <button onClick={() => clearDisplay()} value="AC">
+            <button onClick={() => onClear()} value="AC">
               {" "}
               AC{" "}
             </button>
