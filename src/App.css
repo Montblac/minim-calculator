@@ -49,7 +49,7 @@ header {
 }
 
 .screen .prev,
-.screen .curr {
+.screen .display {
   color: #eceff4;
   display: block;
   position: absolute;
@@ -60,7 +60,7 @@ header {
   bottom: 2.5em;
 }
 
-.screen .curr {
+.screen .display {
   font-size: 2em;
   bottom: 0em;
 }

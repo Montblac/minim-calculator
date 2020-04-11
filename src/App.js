@@ -50,7 +50,7 @@ function App() {
   const toggleSign = () => {
     if (current) {
       var num = parseFloat(current);
-      setCurrent(num > 0 ? -Math.abs(num) : Math.abs(num));
+      updateCurrent(num > 0 ? -Math.abs(num) : Math.abs(num));
     }
   };
   const doCalculate = (operand1, operand2, operator) => {
@@ -80,25 +80,29 @@ function App() {
         parseFloat(previous),
         operator
       );
-      updatePrevious(current);
-      updateCurrent(result);
-      updateOperator(op);
+      updateDisplay(result);
+      updatePrevious(result);
     } else {
-      updateOperator(op);
+      clearDisplay();
       updatePrevious(current);
-      clearCurrent();
     }
+    updateOperator(op);
+    clearCurrent();
   };
   const onNumber = num => {
     if (current === "0") {
       updateCurrent(num);
+      updateDisplay(num);
     } else {
-      updateCurrent(current + num);
+      let result = current + num;
+      updateCurrent(result);
+      updateDisplay(result);
     }
   };
 
   // TODO: Make separate Display function to show values without changing state
   const onClear = () => {
+    clearDisplay();
     clearCurrent();
     clearPrevious();
     clearOperator();
@@ -111,7 +115,8 @@ function App() {
         parseFloat(previous),
         operator
       );
-      setCurrent(result);
+      updateCurrent(result);
+      updateDisplay(result);
     }
   };
 
@@ -128,7 +133,7 @@ function App() {
       <div className="calculator">
         <div className="screen">
           <div className="prev">{previous}</div>
-          <div className="curr">{current}</div>
+          <div className="display">{display}</div>
         </div>
         <div className="pad">
           <div>
