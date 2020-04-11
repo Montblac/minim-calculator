@@ -48,9 +48,11 @@ function App() {
   };
 
   const toggleSign = () => {
-    if (current) {
-      var num = parseFloat(current);
-      updateCurrent(num > 0 ? -Math.abs(num) : Math.abs(num));
+    if (current && current !== "0") {
+      let num = parseFloat(current);
+      let result = (num > 0 ? -Math.abs(num) : Math.abs(num)).toString();
+      updateCurrent(result);
+      updateDisplay(result);
     }
   };
   const doCalculate = (operand1, operand2, operator) => {
@@ -80,11 +82,11 @@ function App() {
         parseFloat(previous),
         operator
       );
-      updateDisplay(result);
       updatePrevious(result);
+      updateDisplay(result);
     } else {
-      clearDisplay();
       updatePrevious(current);
+      clearDisplay();
     }
     updateOperator(op);
     clearCurrent();
