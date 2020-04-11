@@ -39,7 +39,6 @@ header {
 }
 
 .calculator .screen {
-  /*background: pink;*/
   width: 100%;
   height: 32%;
   position: relative;
