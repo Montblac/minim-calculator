@@ -14,7 +14,7 @@ REF
 */
 
 function App() {
-  const [current, setCurrent] = useState("");
+  const [current, setCurrent] = useState("0");
   const [previous, setPrevious] = useState("");
   const [operator, setOperator] = useState("");
 
@@ -31,7 +31,7 @@ function App() {
 
   // Clear Functions
   const clearCurrent = () => {
-    updateCurrent("");
+    updateCurrent("0");
   };
   const clearPrevious = () => {
     updatePrevious("");
@@ -67,12 +67,27 @@ function App() {
     return result;
   };
   const onOperator = op => {
-    updateOperator(op);
-    updatePrevious(current);
-    updateCurrent("");
+    if (current && previous && operator) {
+      let result = doCalculate(
+        parseFloat(current),
+        parseFloat(previous),
+        operator
+      );
+      updatePrevious(current);
+      updateCurrent(result);
+      updateOperator(op);
+    } else {
+      updateOperator(op);
+      updatePrevious(current);
+      clearCurrent();
+    }
   };
   const onNumber = num => {
-    updateCurrent(current + num);
+    if (current === "0") {
+      updateCurrent(num);
+    } else {
+      updateCurrent(current + num);
+    }
   };
 
   // TODO: Make separate Display function to show values without changing state
@@ -95,9 +110,8 @@ function App() {
 
   const onPercent = () => {
     if (current && previous && operator) {
-      let prev_temp = parseFloat(previous);
-      let curr_temp = parseFloat(current);
-      setCurrent();
+      let result = parseFloat(previous) * (parseFloat(current) / 100);
+      updateCurrent(result);
     }
   };
 
