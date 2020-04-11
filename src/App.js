@@ -111,13 +111,13 @@ function App() {
   };
   const onEqual = () => {
     if (current && previous && operator) {
-      updatePrevious("");
       let result = doCalculate(
         parseFloat(current),
         parseFloat(previous),
         operator
       );
-      updateCurrent(result);
+      clearCurrent();
+      updatePrevious(result);
       updateDisplay(result);
     }
   };
