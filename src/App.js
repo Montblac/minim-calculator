@@ -14,11 +14,15 @@ REF
 */
 
 function App() {
+  const [display, setDisplay] = useState("");
   const [current, setCurrent] = useState("0");
   const [previous, setPrevious] = useState("");
   const [operator, setOperator] = useState("");
 
   // Update Functions
+  const updateDisplay = value => {
+    setDisplay(value);
+  };
   const updateCurrent = value => {
     setCurrent(value);
   };
@@ -30,6 +34,9 @@ function App() {
   };
 
   // Clear Functions
+  const clearDisplay = () => {
+    updateDisplay("");
+  };
   const clearCurrent = () => {
     updateCurrent("0");
   };
