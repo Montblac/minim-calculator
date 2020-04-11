@@ -9,6 +9,7 @@ TODO
    as number buttons
  - Organize codebase to use separate js files per component (optional)
  - Add support for displaying large numbers (i.e. 1.3e100)
+ - Add Github svg logo and link
  - Remove unecessary files
 
 REF
