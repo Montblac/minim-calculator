@@ -123,7 +123,7 @@ function App() {
               {" "}
               %{" "}
             </button>
-            <button onClick={e => updateOperator(e.target.value)} value="/">
+            <button onClick={e => onOperator(e.target.value)} value="/">
               {" "}
               /{" "}
             </button>
@@ -142,7 +142,7 @@ function App() {
               {" "}
               9{" "}
             </button>
-            <button onClick={e => updateOperator(e.target.value)} value="x">
+            <button onClick={e => onOperator(e.target.value)} value="x">
               {" "}
               x{" "}
             </button>
@@ -160,7 +160,7 @@ function App() {
               {" "}
               6{" "}
             </button>
-            <button onClick={e => updateOperator(e.target.value)} value="-">
+            <button onClick={e => onOperator(e.target.value)} value="-">
               {" "}
               -{" "}
             </button>
@@ -178,7 +178,7 @@ function App() {
               {" "}
               3{" "}
             </button>
-            <button onClick={e => updateOperator(e.target.value)} value="+">
+            <button onClick={e => onOperator(e.target.value)} value="+">
               {" "}
               +{" "}
             </button>
