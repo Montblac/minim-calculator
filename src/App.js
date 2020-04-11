@@ -7,6 +7,9 @@ TODO
    changing of how the buttons are organized in separate divs
  - Create function that adds operator buttons programmatically, but same issue
    as number buttons
+ - Organize codebase to use separate js files per component (optional)
+ - Add support for displaying large numbers (i.e. 1.3e100)
+ - Remove unecessary files
 
 REF
   - number buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
@@ -55,6 +58,7 @@ function App() {
       updateDisplay(result);
     }
   };
+
   const doCalculate = (operand1, operand2, operator) => {
     let result;
     switch (operator) {
@@ -75,6 +79,7 @@ function App() {
     }
     return result;
   };
+
   const onOperator = op => {
     if (current && previous && operator) {
       let result = doCalculate(
@@ -91,6 +96,7 @@ function App() {
     updateOperator(op);
     clearCurrent();
   };
+
   const onNumber = num => {
     if (current === "0") {
       updateCurrent(num);
@@ -102,13 +108,13 @@ function App() {
     }
   };
 
-  // TODO: Make separate Display function to show values without changing state
   const onClear = () => {
     clearDisplay();
     clearCurrent();
     clearPrevious();
     clearOperator();
   };
+
   const onEqual = () => {
     if (current && previous && operator) {
       let result = doCalculate(
