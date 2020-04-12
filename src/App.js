@@ -78,7 +78,7 @@ function App() {
       default:
         console.log("Warning: Improperly handled calculation");
     }
-    return result;
+    return result.toFixed(3);
   };
 
   const onOperator = op => {
