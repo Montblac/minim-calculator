@@ -145,98 +145,90 @@ function App() {
           <div className="display">{display}</div>
         </div>
         <div className="pad">
-          <div>
-            <button onClick={() => onClear()} value="AC">
-              {" "}
-              AC{" "}
-            </button>
-            <button onClick={() => toggleSign()} value="+/-">
-              {" "}
-              +/-{" "}
-            </button>
-            <button onClick={() => onPercent()} value="%">
-              {" "}
-              %{" "}
-            </button>
-            <button onClick={e => onOperator(e.target.value)} value="/">
-              {" "}
-              /{" "}
-            </button>
-          </div>
+          <button onClick={() => onClear()} value="AC">
+            {" "}
+            AC{" "}
+          </button>
+          <button onClick={() => toggleSign()} value="+/-">
+            {" "}
+            +/-{" "}
+          </button>
+          <button onClick={() => onPercent()} value="%">
+            {" "}
+            %{" "}
+          </button>
+          <button onClick={e => onOperator(e.target.value)} value="/">
+            {" "}
+            /{" "}
+          </button>
 
-          <div>
-            <button onClick={e => onNumber(e.target.value)} value="7">
-              {" "}
-              7{" "}
-            </button>
-            <button onClick={e => onNumber(e.target.value)} value="8">
-              {" "}
-              8{" "}
-            </button>
-            <button onClick={e => onNumber(e.target.value)} value="9">
-              {" "}
-              9{" "}
-            </button>
-            <button onClick={e => onOperator(e.target.value)} value="x">
-              {" "}
-              x{" "}
-            </button>
-          </div>
-          <div>
-            <button onClick={e => onNumber(e.target.value)} value="4">
-              {" "}
-              4{" "}
-            </button>
-            <button onClick={e => onNumber(e.target.value)} value="5">
-              {" "}
-              5{" "}
-            </button>
-            <button onClick={e => onNumber(e.target.value)} value="6">
-              {" "}
-              6{" "}
-            </button>
-            <button onClick={e => onOperator(e.target.value)} value="-">
-              {" "}
-              -{" "}
-            </button>
-          </div>
-          <div>
-            <button onClick={e => onNumber(e.target.value)} value="1">
-              {" "}
-              1{" "}
-            </button>
-            <button onClick={e => onNumber(e.target.value)} value="2">
-              {" "}
-              2{" "}
-            </button>
-            <button onClick={e => onNumber(e.target.value)} value="3">
-              {" "}
-              3{" "}
-            </button>
-            <button onClick={e => onOperator(e.target.value)} value="+">
-              {" "}
-              +{" "}
-            </button>
-          </div>
+          <button onClick={e => onNumber(e.target.value)} value="7">
+            {" "}
+            7{" "}
+          </button>
+          <button onClick={e => onNumber(e.target.value)} value="8">
+            {" "}
+            8{" "}
+          </button>
+          <button onClick={e => onNumber(e.target.value)} value="9">
+            {" "}
+            9{" "}
+          </button>
+          <button onClick={e => onOperator(e.target.value)} value="x">
+            {" "}
+            x{" "}
+          </button>
 
-          <div>
-            <button onClick={e => onNumber(e.target.value)} value="0">
-              {" "}
-              0{" "}
-            </button>
-            <button onClick={e => onNumber(e.target.value)} value=".">
-              {" "}
-              .{" "}
-            </button>
-            <button
-              onClick={() => onEqual({ current, previous })}
-              className="equal"
-              value="="
-            >
-              {" "}
-              ={" "}
-            </button>
-          </div>
+          <button onClick={e => onNumber(e.target.value)} value="4">
+            {" "}
+            4{" "}
+          </button>
+          <button onClick={e => onNumber(e.target.value)} value="5">
+            {" "}
+            5{" "}
+          </button>
+          <button onClick={e => onNumber(e.target.value)} value="6">
+            {" "}
+            6{" "}
+          </button>
+          <button onClick={e => onOperator(e.target.value)} value="-">
+            {" "}
+            -{" "}
+          </button>
+
+          <button onClick={e => onNumber(e.target.value)} value="1">
+            {" "}
+            1{" "}
+          </button>
+          <button onClick={e => onNumber(e.target.value)} value="2">
+            {" "}
+            2{" "}
+          </button>
+          <button onClick={e => onNumber(e.target.value)} value="3">
+            {" "}
+            3{" "}
+          </button>
+          <button onClick={e => onOperator(e.target.value)} value="+">
+            {" "}
+            +{" "}
+          </button>
+
+          <button onClick={e => onNumber(e.target.value)} value="0">
+            {" "}
+            0{" "}
+          </button>
+          <button onClick={e => onNumber(e.target.value)} value=".">
+            {" "}
+            .{" "}
+          </button>
+          <button
+            onClick={() => onEqual({ current, previous })}
+            className="equal"
+            value="="
+          >
+            {" "}
+            ={" "}
+          </button>
         </div>
       </div>
     </div>
