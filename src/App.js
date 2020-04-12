@@ -78,7 +78,7 @@ function App() {
       default:
         console.log("Warning: Improperly handled calculation");
     }
-    return result.toFixed(3);
+    return result.length < 10 ? result.toFixed(3) : result.toExponential(3);
   };
 
   const onOperator = op => {
