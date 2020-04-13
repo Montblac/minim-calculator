@@ -8,7 +8,6 @@ TODO
  - Create function that adds operator buttons programmatically, but same issue
    as number buttons
  - Organize codebase to use separate js files per component (optional)
- - Add support for displaying large numbers (i.e. 1.3e100)
  - Add Github svg logo and link
  - Remove unecessary files
 
@@ -19,19 +18,25 @@ REF
 
 function App() {
   const [display, setDisplay] = useState("");
-  const [current, setCurrent] = useState("0");
-  const [previous, setPrevious] = useState("");
+  const [current, setCurrent] = useState(0);
+  const [previous, setPrevious] = useState(null);
   const [operator, setOperator] = useState("");
 
   // Update Functions
   const updateDisplay = value => {
-    setDisplay(value);
+    if (value.toString().length > 10) {
+      setDisplay(value.toExponential(3));
+    } else if (!Number.isInteger(value)) {
+      setDisplay(value.toFixed(3));
+    } else {
+      setDisplay(value.toString());
+    }
   };
   const updateCurrent = value => {
-    setCurrent(value);
+    setCurrent(isNaN(value) ? Number(value) : value);
   };
   const updatePrevious = value => {
-    setPrevious(value);
+    setPrevious(isNaN(value) ? Number(value) : value);
   };
   const updateOperator = op => {
     setOperator(op);
@@ -39,25 +44,22 @@ function App() {
 
   // Clear Functions
   const clearDisplay = () => {
-    updateDisplay("");
+    setDisplay("");
   };
   const clearCurrent = () => {
-    updateCurrent("0");
+    setCurrent(0);
   };
   const clearPrevious = () => {
-    updatePrevious("");
+    setPrevious(0);
   };
   const clearOperator = () => {
-    updateOperator("");
+    setOperator("");
   };
 
   const toggleSign = () => {
-    if (current && current !== "0") {
-      let num = parseFloat(current);
-      let result = (num > 0 ? -Math.abs(num) : Math.abs(num)).toString();
-      updateCurrent(result);
-      updateDisplay(result);
-    }
+    let result = -current;
+    updateCurrent(result);
+    updateDisplay(result);
   };
 
   const doCalculate = (operand1, operand2, operator) => {
@@ -78,16 +80,12 @@ function App() {
       default:
         console.log("Warning: Improperly handled calculation");
     }
-    return result.length < 10 ? result.toFixed(3) : result.toExponential(3);
+    return result;
   };
 
   const onOperator = op => {
     if (current && previous && operator) {
-      let result = doCalculate(
-        parseFloat(current),
-        parseFloat(previous),
-        operator
-      );
+      let result = doCalculate(current, previous, operator);
       updatePrevious(result);
       updateDisplay(result);
     } else {
@@ -99,14 +97,12 @@ function App() {
   };
 
   const onNumber = num => {
-    if (current === "0") {
-      updateCurrent(num);
-      updateDisplay(num);
-    } else {
-      let result = current + num;
-      updateCurrent(result);
-      updateDisplay(result);
+    let result = num;
+    if (current !== 0) {
+      result = current.toString() + result;
     }
+    updateCurrent(Number(result));
+    updateDisplay(Number(result));
   };
 
   const onClear = () => {
@@ -118,12 +114,7 @@ function App() {
 
   const onEqual = () => {
     if (current && previous && operator) {
-      let result = doCalculate(
-        parseFloat(current),
-        parseFloat(previous),
-        operator
-      );
-      clearCurrent();
+      let result = doCalculate(current, previous, operator);
       updatePrevious(result);
       updateDisplay(result);
     }
@@ -131,7 +122,7 @@ function App() {
 
   const onPercent = () => {
     if (current && previous && operator) {
-      let result = parseFloat(previous) * (parseFloat(current) / 100);
+      let result = previous * (current / 100);
       updateCurrent(result);
     }
   };
