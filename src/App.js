@@ -18,25 +18,28 @@ REF
 
 function App() {
   const [display, setDisplay] = useState("");
-  const [current, setCurrent] = useState(0);
-  const [previous, setPrevious] = useState(null);
+  const [current, setCurrent] = useState("");
+  const [previous, setPrevious] = useState("");
   const [operator, setOperator] = useState("");
 
   // Update Functions
+  // TODO: Optimize updateDisplay, possibly regex
   const updateDisplay = value => {
-    if (value.toString().length > 10) {
-      setDisplay(value.toExponential(3));
-    } else if (!Number.isInteger(value)) {
-      setDisplay(value.toFixed(3));
+    let num = Number(value);
+
+    if (value.length > 10) {
+      setDisplay(num.toExponential(3));
+    } else if (!Number.isInteger(num)) {
+      setDisplay(Number(num.toFixed(3)).toString());
     } else {
-      setDisplay(value.toString());
+      setDisplay(value);
     }
   };
   const updateCurrent = value => {
-    setCurrent(isNaN(value) ? Number(value) : value);
+    setCurrent(value);
   };
   const updatePrevious = value => {
-    setPrevious(isNaN(value) ? Number(value) : value);
+    setPrevious(value);
   };
   const updateOperator = op => {
     setOperator(op);
@@ -47,17 +50,20 @@ function App() {
     setDisplay("");
   };
   const clearCurrent = () => {
-    setCurrent(0);
+    setCurrent("");
   };
   const clearPrevious = () => {
-    setPrevious(0);
+    setPrevious("");
   };
   const clearOperator = () => {
     setOperator("");
   };
 
   const toggleSign = () => {
-    let result = -current;
+    let result = Number(current);
+    if (Number(current) !== 0) {
+      result = (-result).toString();
+    }
     updateCurrent(result);
     updateDisplay(result);
   };
@@ -83,26 +89,43 @@ function App() {
     return result;
   };
 
+  /*
   const onOperator = op => {
     if (current && previous && operator) {
       let result = doCalculate(current, previous, operator);
       updatePrevious(result);
       updateDisplay(result);
-    } else {
+    } else if (current) {
       updatePrevious(current);
       clearDisplay();
     }
-    updateOperator(op);
     clearCurrent();
+    updateOperator(op);
+  };
+  */
+  const onOperator = op => {
+    if (current) {
+      updatePrevious(current);
+      clearCurrent();
+      clearDisplay();
+      updateOperator(op);
+    }
   };
 
   const onNumber = num => {
-    let result = num;
-    if (current !== 0) {
-      result = current.toString() + result;
+    if (!current || current === "0") {
+      updateCurrent(num);
+      updateDisplay(num);
+    } else {
+      updateCurrent(current + num);
+      updateDisplay(current + num);
     }
-    updateCurrent(Number(result));
-    updateDisplay(Number(result));
+  };
+  const onDot = () => {
+    if (!current.includes(".")) {
+      updateCurrent(current + ".");
+      updateDisplay(current + ".");
+    }
   };
 
   const onClear = () => {
@@ -114,16 +137,22 @@ function App() {
 
   const onEqual = () => {
     if (current && previous && operator) {
-      let result = doCalculate(current, previous, operator);
-      updatePrevious(result);
+      let result = doCalculate(
+        Number(current),
+        Number(previous),
+        operator
+      ).toString();
+      updatePrevious(current);
+      updateCurrent(result);
       updateDisplay(result);
     }
   };
 
   const onPercent = () => {
     if (current && previous && operator) {
-      let result = previous * (current / 100);
+      let result = (Number(previous) * (Number(current) / 100)).toString();
       updateCurrent(result);
+      updateDisplay(result);
     }
   };
 
@@ -208,7 +237,7 @@ function App() {
             {" "}
             0{" "}
           </button>
-          <button onClick={e => onNumber(e.target.value)} value=".">
+          <button onClick={() => onDot()} value=".">
             {" "}
             .{" "}
           </button>
