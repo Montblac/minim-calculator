@@ -27,7 +27,7 @@ function App() {
   const updateDisplay = value => {
     let num = Number(value);
 
-    if (value.length > 10) {
+    if (value.length > 15) {
       setDisplay(num.toExponential(3));
     } else if (!Number.isInteger(num)) {
       setDisplay(Number(num.toFixed(3)).toString());
