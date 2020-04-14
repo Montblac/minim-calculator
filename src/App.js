@@ -61,11 +61,11 @@ function App() {
 
   const toggleSign = () => {
     let result = Number(current);
-    if (Number(current) !== 0) {
+    if (result !== 0) {
       result = (-result).toString();
+      updateCurrent(result);
+      updateDisplay(result);
     }
-    updateCurrent(result);
-    updateDisplay(result);
   };
 
   const doCalculate = (operand1, operand2, operator) => {
