@@ -10,6 +10,10 @@ TODO
  - Organize codebase to use separate js files per component (optional)
  - Add Github svg logo and link
  - Remove unecessary files
+ - Consider using 3 useStates: 
+    => current: the active string that the user manipulates in real time
+    => history: the last previously submitted value
+    => answer:  the result of the calculation
 
 REF
   - number buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
@@ -89,22 +93,14 @@ function App() {
     return result;
   };
 
-  /*
   const onOperator = op => {
     if (current && previous && operator) {
-      let result = doCalculate(current, previous, operator);
+      let result = doCalculate(Number(current), Number(previous), operator);
       updatePrevious(result);
-      updateDisplay(result);
-    } else if (current) {
-      updatePrevious(current);
+      clearCurrent();
       clearDisplay();
-    }
-    clearCurrent();
-    updateOperator(op);
-  };
-  */
-  const onOperator = op => {
-    if (current) {
+      updateOperator(op);
+    } else if (current) {
       updatePrevious(current);
       clearCurrent();
       clearDisplay();
@@ -142,7 +138,8 @@ function App() {
         Number(previous),
         operator
       ).toString();
-      updatePrevious(current);
+      //updatePrevious(current);
+      clearPrevious();
       updateCurrent(result);
       updateDisplay(result);
     }
