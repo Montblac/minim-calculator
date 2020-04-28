@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Github } from "@icons-pack/react-simple-icons";
 import "./App.css";
 
 /*
@@ -7,10 +8,9 @@ TODO
    changing of how the buttons are organized in separate divs
  - Create function that adds operator buttons programmatically, but same issue
    as number buttons
- - Organize codebase to use separate js files per component (optional)
- - Add Github svg logo and link
+ - Organize codebase to use separate js files per component
  - Remove unecessary files
- - Consider using 3 useStates: 
+ - Consider using 3 useStates:
     => current: the active string that the user manipulates in real time
     => history: the last previously submitted value
     => answer:  the result of the calculation
@@ -28,7 +28,7 @@ function App() {
 
   // Update Functions
   // TODO: Optimize updateDisplay, possibly regex
-  const updateDisplay = value => {
+  const updateDisplay = (value) => {
     let num = Number(value);
 
     if (value.length > 15) {
@@ -39,13 +39,13 @@ function App() {
       setDisplay(value);
     }
   };
-  const updateCurrent = value => {
+  const updateCurrent = (value) => {
     setCurrent(value);
   };
-  const updatePrevious = value => {
+  const updatePrevious = (value) => {
     setPrevious(value);
   };
-  const updateOperator = op => {
+  const updateOperator = (op) => {
     setOperator(op);
   };
 
@@ -93,7 +93,7 @@ function App() {
     return result;
   };
 
-  const onOperator = op => {
+  const onOperator = (op) => {
     if (current && previous && operator) {
       let result = doCalculate(Number(current), Number(previous), operator);
       updatePrevious(result);
@@ -108,7 +108,7 @@ function App() {
     }
   };
 
-  const onNumber = num => {
+  const onNumber = (num) => {
     if (!current || current === "0") {
       updateCurrent(num);
       updateDisplay(num);
@@ -156,6 +156,12 @@ function App() {
   return (
     <div className="app">
       <header> Minimal Calculator </header>
+      <div className="social">
+        <Github
+          size={24}
+          onClick={() => window.open("https://github.com/Montblac")}
+        />
+      </div>
       <div className="calculator">
         <div className="screen">
           <div className="prev">{previous}</div>
@@ -174,63 +180,63 @@ function App() {
             {" "}
             %{" "}
           </button>
-          <button onClick={e => onOperator(e.target.value)} value="/">
+          <button onClick={(e) => onOperator(e.target.value)} value="/">
             {" "}
             /{" "}
           </button>
 
-          <button onClick={e => onNumber(e.target.value)} value="7">
+          <button onClick={(e) => onNumber(e.target.value)} value="7">
             {" "}
             7{" "}
           </button>
-          <button onClick={e => onNumber(e.target.value)} value="8">
+          <button onClick={(e) => onNumber(e.target.value)} value="8">
             {" "}
             8{" "}
           </button>
-          <button onClick={e => onNumber(e.target.value)} value="9">
+          <button onClick={(e) => onNumber(e.target.value)} value="9">
             {" "}
             9{" "}
           </button>
-          <button onClick={e => onOperator(e.target.value)} value="x">
+          <button onClick={(e) => onOperator(e.target.value)} value="x">
             {" "}
             x{" "}
           </button>
 
-          <button onClick={e => onNumber(e.target.value)} value="4">
+          <button onClick={(e) => onNumber(e.target.value)} value="4">
             {" "}
             4{" "}
           </button>
-          <button onClick={e => onNumber(e.target.value)} value="5">
+          <button onClick={(e) => onNumber(e.target.value)} value="5">
             {" "}
             5{" "}
           </button>
-          <button onClick={e => onNumber(e.target.value)} value="6">
+          <button onClick={(e) => onNumber(e.target.value)} value="6">
             {" "}
             6{" "}
           </button>
-          <button onClick={e => onOperator(e.target.value)} value="-">
+          <button onClick={(e) => onOperator(e.target.value)} value="-">
             {" "}
             -{" "}
           </button>
 
-          <button onClick={e => onNumber(e.target.value)} value="1">
+          <button onClick={(e) => onNumber(e.target.value)} value="1">
             {" "}
             1{" "}
           </button>
-          <button onClick={e => onNumber(e.target.value)} value="2">
+          <button onClick={(e) => onNumber(e.target.value)} value="2">
             {" "}
             2{" "}
           </button>
-          <button onClick={e => onNumber(e.target.value)} value="3">
+          <button onClick={(e) => onNumber(e.target.value)} value="3">
             {" "}
             3{" "}
           </button>
-          <button onClick={e => onOperator(e.target.value)} value="+">
+          <button onClick={(e) => onOperator(e.target.value)} value="+">
             {" "}
             +{" "}
           </button>
 
-          <button onClick={e => onNumber(e.target.value)} value="0">
+          <button onClick={(e) => onNumber(e.target.value)} value="0">
             {" "}
             0{" "}
           </button>
