@@ -12,6 +12,5 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${colors.nord1};
   }
-
 `
 export default GlobalStyle

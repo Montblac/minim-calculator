@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import { theme } from "@styles"
-const { colors, fonts } = theme
+const { colors } = theme
 
 const StyledHeader = styled.header`
   position: relative;

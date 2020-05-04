@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Github } from "@icons-pack/react-simple-icons"
-import { Header } from "@components"
+import { Header, Display } from "@components"
 import { GlobalStyle } from "@styles"
 import "../styles/index.css"
 
@@ -170,7 +170,7 @@ const IndexPage = () => {
         <div className="calculator">
           <div className="screen">
             <div className="prev">{previous}</div>
-            <div className="display">{display}</div>
+            <Display data={display} />
           </div>
           <div className="pad">
             <button onClick={() => onClear()} value="AC">
