@@ -4,6 +4,7 @@
   "description": "A simple calculator with a minimalist design",
   "version": "0.1.0",
   "author": "Sam Leyva",
+  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "env-cmd -f .env.development gatsby develop",
