@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
+import { theme } from "@styles"
+const { colors, fonts } = theme
 
 const StyledHeader = styled.header`
   position: relative;
@@ -10,7 +12,7 @@ const StyledHeader = styled.header`
   letter-spacing: 0.1rem;
   font-weight: 400;
   font-size: 1.5rem;
-  color: #eceff4;
+  color: ${colors.nord6};
   @media (min-width: 450px) {
     position: absolute;
     top: 1rem;

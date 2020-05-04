@@ -7,10 +7,11 @@ const GlobalStyle = createGlobalStyle`
   ${FontFaces};
 
   * {
-    font-family: Alcubierre;
+    font-family: ${fonts.Alcubierre};
   }
   body {
     background: ${colors.nord1};
   }
+
 `
 export default GlobalStyle
