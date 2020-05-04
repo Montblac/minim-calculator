@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Github } from "@icons-pack/react-simple-icons"
-import { Header, Display } from "@components"
+import { Header, Display, Previous } from "@components"
 import { GlobalStyle } from "@styles"
 import "../styles/index.css"
 
@@ -169,7 +169,7 @@ const IndexPage = () => {
         </div>
         <div className="calculator">
           <div className="screen">
-            <div className="prev">{previous}</div>
+            <Previous data={previous} />
             <Display data={display} />
           </div>
           <div className="pad">
